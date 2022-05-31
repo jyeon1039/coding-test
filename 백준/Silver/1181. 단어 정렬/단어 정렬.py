@@ -1,8 +1,10 @@
-n = int(input())
+import sys
+
+n = int(sys.stdin.readline())
 words = []
 
 for i in range(n):
-    words.append(input())
+    words.append(sys.stdin.readline().strip())
 words = list(set(words))
 
 words.sort()

@@ -1,0 +1,18 @@
+
+def solution(numbers, target):
+    answer = 0
+    n = len(numbers)
+    
+    def dfs(sum, idx):
+        if idx == n:
+            if sum == target:
+                nonlocal answer #UnboundLocalError answer 에러 때문에 넣어주는 nonlocal 명령어
+                answer += 1
+        else:
+            dfs(sum + numbers[idx], idx+1)
+            dfs(sum + -numbers[idx], idx+1)
+        
+    dfs(numbers[0], 1)
+    dfs(-numbers[0], 1)
+    
+    return answer

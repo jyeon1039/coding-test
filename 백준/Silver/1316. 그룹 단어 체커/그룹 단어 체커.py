@@ -5,7 +5,7 @@ res = 0
 
 for _ in range(n):
     dic = {}
-    s = sys.stdin.readline()
+    s = sys.stdin.readline().strip()
     isGroup = True
     for i in range(len(s)):
         if s[i] in dic:

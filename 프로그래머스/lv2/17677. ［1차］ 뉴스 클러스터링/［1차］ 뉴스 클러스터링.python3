@@ -1,0 +1,58 @@
+import math
+
+def union(a, b):
+    tmp_b = b.copy()
+    res = []
+    for x in a:
+        res.append(x)
+        if x in tmp_b:
+            tmp_b.remove(x)
+            
+    for x in tmp_b:
+        res.append(x)
+    
+    return len(res)
+        
+def inter(a, b):
+    tmp_b = b.copy()
+    res = []
+    for x in a:
+        if x in tmp_b:
+            tmp_b.remove(x)
+            res.append(x)
+            
+    return len(res)
+        
+def solution(str1, str2):
+    answer = 0
+    
+    a = []
+    b = []
+    tmp = ""
+    for i in range(len(str1)):
+        if str1[i].isalpha():
+            tmp += str1[i].lower()
+        else:
+            tmp = ""
+            
+        if len(tmp) == 2:
+            a.append(tmp)
+            tmp = str1[i].lower()
+            
+    tmp = ""  
+    for i in range(len(str2)):
+        if str2[i].isalpha():
+            tmp += str2[i].lower()
+        else:
+            tmp = ""
+            
+        if len(tmp) == 2:
+            b.append(tmp)
+            tmp = str2[i].lower()
+    
+    if inter(a, b) == union(a, b):
+        answer = 65536
+    else:
+        answer = inter(a,b) / union(a, b) * 65536
+    
+    return math.trunc(answer)

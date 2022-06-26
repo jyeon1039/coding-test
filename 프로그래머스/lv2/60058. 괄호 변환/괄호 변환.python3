@@ -1,0 +1,57 @@
+# 올바른 괄호 문자열 체크
+def isCorrect(p):
+    stack = []
+    for x in p:
+        if x == '(':
+            stack.append(x)
+        elif x == ')':
+            if len(stack) != 0:
+                if stack[-1] == '(':
+                    stack.pop()
+                else:
+                    return False
+            else:
+                return False
+            
+    if len(stack) == 0:
+        return True
+    else:
+        return False
+
+#균형잡힌 문자열 분리
+def splitString(s):
+    lc, rc = 0, 0
+    idx = 0
+    for i in range(len(s)):
+        if s[i] == '(':
+            lc += 1
+        elif s[i] == ')':
+            rc += 1
+        
+        if lc != 0 and rc != 0 and lc == rc:
+            idx = i
+            break
+    return s[:idx+1], s[idx+1:]
+
+def makeString(s):
+    if isCorrect(s):
+        return s
+    else:
+        u, v = splitString(s)
+        if isCorrect(u):
+            return u + makeString(v)
+        else:
+            u = list(u[1:len(u)-1]) #첫 번째와 마지막 문자 제거
+            for i in range(len(u)):
+                if u[i] == '(':
+                    u[i] = ')'
+                else:
+                    u[i] = '('
+            return '(' + makeString(v) + ')' + "".join(u)
+            
+def solution(p):
+    u, v = splitString(p)
+    if isCorrect(p):
+        return p
+    else:
+        return makeString(p)

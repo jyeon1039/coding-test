@@ -21,31 +21,31 @@ def removeBoard(m, n, arr, board):
                 for y in range(sy-ey-1, -1, -1):
                     arr[y][x] = 0
                     board[y][x] = ' '
-                    
+
             else: #지울 게 없는 경우
                 break
 
     return board
-    
+
 def solution(m, n, board):
     answer = 0
-    
+
     tmp = []
     for x in board:
         tmp.append(list(x))
     board = tmp
-    
+
     dirs = [(0, 1), (1, 0), (1, 1)]
     while True:
         isRemove = False
         arr = [[0]*n for _ in range(m)] # 지워지는 블록 나타내는 배열
-        
+
         for y in range(m):
             for x in range(n):
                 data = board[y][x]
                 if data == ' ': # 지워진 칸의 경우 고려 X
                     continue
-                    
+
                 sameCnt = 0
                 for (dx, dy) in dirs:
                     nx = x + dx
@@ -60,7 +60,7 @@ def solution(m, n, board):
                         nx = x + dx
                         ny = y + dy
                         arr[ny][nx] = 1
-            
+
         if not isRemove: #not isRemove
             break
         else:
@@ -70,5 +70,5 @@ def solution(m, n, board):
         for x in range(n):
             if board[y][x] == ' ':
                 answer += 1
-    
+
     return answer

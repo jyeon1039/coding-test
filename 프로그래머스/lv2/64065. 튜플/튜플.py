@@ -1,10 +1,9 @@
 def solution(s):
     answer = []
     
-    s = s.replace("{", " ").replace("},", " ").replace("}}", "")
-    tmp = s.split()
+    s = s.lstrip('{').rstrip('}').split('},{')
     arr = []
-    for x in tmp:
+    for x in s:
         arr.append(list(map(int, x.split(","))))
         
     arr.sort(key=len)

@@ -10,7 +10,7 @@ def isPrimeNumber(x):
 
 def solution(nums):
     answer = 0
-    combi = list(combinations(nums, 3))
+    combi = list(combinations(nums, 3)) # 조합 구하기
 
     for x in combi:
         if isPrimeNumber(sum(x)):

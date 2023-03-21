@@ -1,7 +1,7 @@
 def solution(id_list, report, k):
-    id_dic = dict(zip(id_list, [0 for i in id_list])) # 유저의 신고당한 횟수 저장
-    report_dic = dict(zip(id_list, [[] for i in id_list])) # 유저가 신고당한 ID 저장
-    answer = dict(zip(id_list, [0 for i in id_list])) # 메일 전송 횟수 저장
+    id_dic = {x : 0 for x in id_list} # 유저의 신고당한 횟수 저장
+    report_dic = {x : [] for x in id_list} # 유저가 신고당한 ID 저장
+    answer ={x : 0 for x in id_list} # 메일 전송 횟수 저장
     
     for x in report:
         a, b = x.split()

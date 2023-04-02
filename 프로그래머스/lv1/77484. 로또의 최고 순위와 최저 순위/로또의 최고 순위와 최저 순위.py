@@ -1,5 +1,4 @@
 def solution(lottos, win_nums):
-    answer = []
     min = 0
     max = 0
     rank = [6, 6, 5, 4, 3, 2, 1]
@@ -12,7 +11,4 @@ def solution(lottos, win_nums):
                 min += 1
                 max += 1
                 
-    answer.append(rank[max])
-    answer.append(rank[min])
-        
-    return answer
+    return [rank[max], rank[min]]

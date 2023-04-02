@@ -2,7 +2,7 @@ def solution(lottos, win_nums):
     answer = []
     min = 0
     max = 0
-    rank = {6: 1, 5: 2, 4: 3, 3: 4, 2: 5, 1: 6, 0: 6}
+    rank = [6, 6, 5, 4, 3, 2, 1]
     
     for lotto in lottos:
         if lotto == 0:

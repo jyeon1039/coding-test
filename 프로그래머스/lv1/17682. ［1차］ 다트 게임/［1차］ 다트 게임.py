@@ -1,23 +1,36 @@
 def solution(dartResult):
+    answer = 0
+    bonus = {"S" : "**1", "D" : "**2", "T" : "**3"}
+    dartList = []
+    numList = []
     idx = 0
-    dart = []
-    square = {'S': 1, 'D': 2, 'T': 3}
-
-    while idx < len(dartResult):
-        x = dartResult[idx]
-        dartIdx = len(dart)-1
-        if x == '*': # 스타상인 경우
-            dart[dartIdx] = dart[dartIdx]*2
-            if dartIdx != 0: #첫 번째 기회에서 나오지 않은 경우
-                dart[dartIdx-1] *= 2
-        elif x == '#': # 아차상인 경우
-            dart[dartIdx] = dart[dartIdx]*(-1)
-        else: # Single, Double, Triple 인 경우
-            idx += 1
-            while '0' <= dartResult[idx] <= '9':
-                x += dartResult[idx]
-                idx += 1
-            dart.append(int(x) ** square[dartResult[idx]])
-        idx += 1
+    for i, d in enumerate(dartResult, start = 0):
+        if d in bonus: #보너스 체크
+             dartList.append(bonus[d])
+        
+        elif d == "*" and i-2 == 0: #스타상 첫번째일 때
+            print(i)
+            dartList.append("*2")         
     
-    return sum(dart)
+        elif d == "*": #스타상 첫번째가 아닐 때
+            print(i)
+            dartList.append("*2")
+            print(dartList)
+            dartList.insert(len(dartList)-4,"*2")
+            print(dartList)
+               
+        elif d == "#": #아차상일 때
+            dartList.append("*(-1)")
+            
+        elif  d.isdigit() and i != 0 and dartList[-1].isdigit() == False: #숫자이고 10이 아닐 때
+            dartList.append("+")
+            dartList.append(d)
+                
+        else:
+            dartList.append(d)
+
+    result = ''.join(map(str, dartList))
+    
+    print(dartList)
+    
+    return eval(result)

@@ -8,8 +8,7 @@ for i in range(n):
 coin = coin[:len(str(k)) * 2]
 
 for c in coin[::-1]:
-    if k // c > 0:
-        result += k // c
-        k%= c
+    result += k // c
+    k%= c
 
 print(result)

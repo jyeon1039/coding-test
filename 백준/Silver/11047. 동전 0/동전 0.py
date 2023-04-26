@@ -1,14 +1,15 @@
+result = 0
 n, k = map(int,input().split())
-coins = []
-res = 0
+coin = []
 
 for i in range(n):
-    coins.append(int(input()))
+    coin.append(int(input()))
 
-for i in range(n-1, -1, -1): #역순으로 출력
-    coin = coins[i]
-    if k//coin > 0:
-        res += k // coin
-        k %= coin
-        
-print(res)
+coin = coin[:len(str(k)) * 2]
+
+for c in coin[::-1]:
+    if k // c > 0:
+        result += k // c
+        k%= c
+
+print(result)

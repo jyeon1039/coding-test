@@ -1,14 +1,14 @@
-# [Silver III] 동전 0 - 11047 
+# [Silver IV] 동전 0 - 11047 
 
 [문제 링크](https://www.acmicpc.net/problem/11047) 
 
 ### 성능 요약
 
-메모리: 30840 KB, 시간: 68 ms
+메모리: 31256 KB, 시간: 44 ms
 
 ### 분류
 
-그리디 알고리즘(greedy)
+그리디 알고리즘
 
 ### 문제 설명
 

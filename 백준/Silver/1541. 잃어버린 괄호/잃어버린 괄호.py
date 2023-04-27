@@ -1,24 +1,24 @@
 s = input()
-
-res = 0
-tmp = ''
 isMinus = False
-for x in s:
-    if x.isdigit():
-        tmp += x
+result = 0
+n = ''
+
+for ch in s:
+    if ch.isdigit():
+        n += ch
     else:
         if isMinus:
-            res -= int(tmp)
+            result -= int(n)
         else:
-            res += int(tmp)
-        tmp = ''
+            result += int(n)
 
-        if x == '-':
+        if ch == '-':
             isMinus = True
-else:
+        n = ''
+else: # 마지막 숫자 연산
     if isMinus:
-        res -= int(tmp)
+        result -= int(n)
     else:
-        res += int(tmp)
-
-print(res)
+        result += int(n)
+        
+print(result)

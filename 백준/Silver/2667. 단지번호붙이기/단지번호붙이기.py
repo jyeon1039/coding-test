@@ -2,41 +2,36 @@ from collections import deque
 
 n = int(input())
 graph = []
-total = 0
-res = []
-dirs = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+dirs = [(0, 1), (0, -1), (1, 0), (-1, 0)]
 
 def bfs(y, x):
-    queue = deque([(y, x)])
-    graph[y][x] = 0
-    cnt = 1
-
-    while queue:
-        y, x = queue.popleft()
-
-        for dy, dx in dirs:
-            nx = dx + x
-            ny = dy + y
-
-            if 0 <= nx < n and 0 <= ny < n:
+    q = deque([(y, x)])
+    cnt = 0
+    graph[y][x] = 0 # 방문 처리
+    while q:
+        y, x = q.popleft()
+        cnt += 1
+        
+        for (dx, dy) in dirs:
+            nx = x + dx
+            ny = y + dy
+            if 0 <= nx and nx < n and 0 <=ny and ny < n:
                 if graph[ny][nx] == 1:
-                    graph[ny][nx] = 0
-                    queue.append((ny, nx))
-                    cnt += 1
+                    graph[ny][nx] = 0 # 방문 처리
+                    q.append((ny, nx))
 
     return cnt
     
-for i in range(n):
+for _ in range(n):
     graph.append([int(i) for i in input()])
 
-for i in range(n):
-    for j in range(n):
-        if graph[i][j] == 1:
-            res.append(bfs(i, j))
-            total += 1
+result = []
 
-res.sort()
-print(total)
+for y in range(n):
+    for x in range(n):
+        if graph[y][x] == 1:
+            result.append(bfs(y, x))
 
-for i in res:
-    print(i)
+print(len(result))
+for x in sorted(result):
+    print(x)

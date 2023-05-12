@@ -1,37 +1,34 @@
-import sys
 from collections import deque
-dirs = [(-1, 0), (1, 0), (0, -1), (0, 1)]
-    
-n, m = map(int, sys.stdin.readline().split())
+
+m, n = map(int, input().split())
 graph = []
-queue = deque([])
+dirs = [(0, 1), (0, -1), (1, 0), (-1, 0)]
+q = deque([])
 
 def bfs():
-    while queue:
-        y, x = queue.popleft()
-        for i in range(4):
-            ny = y + dirs[i][0]
-            nx = x + dirs[i][1]
-            dist = graph[y][x] + 1
-            if 0 <= ny < m and 0 <= nx < n and graph[ny][nx] == 0:
-                graph[ny][nx] = dist
-                queue.append((ny, nx))
-    
-for i in range(m):
-    graph.append(list(map(int, sys.stdin.readline().split())))
+    while q:
+        y, x = q.popleft()
+        for (dy, dx) in dirs:
+            nx = x + dx
+            ny = y + dy
 
-for x in range(n):
-    for y in range(m):
+            if 0 <= nx < m and 0 <= ny < n and graph[ny][nx] == 0:
+                graph[ny][nx] = graph[y][x] + 1
+                q.append((ny, nx))
+        
+for y in range(n):
+    graph.append(list(map(int, input().split())))
+    for x in range(m):
         if graph[y][x] == 1:
-            queue.append((y, x))
+            q.append((y, x))
 
 bfs()
+result = 0
     
-res = 0
-for i in range(m):
-    if 0 in graph[i]:
+for x in graph:
+    if 0 in x:
         print(-1)
-        exit(0)
-    res = max(res, max(graph[i]))
-
-print(res-1) #하루 빼기
+        break
+    result = max(result, max(x))
+else:
+    print(result-1)

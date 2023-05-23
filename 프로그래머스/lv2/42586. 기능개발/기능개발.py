@@ -5,10 +5,8 @@ def solution(progresses, speeds):
     queue = []
     
     # 각 작업마다 소요되는 날
-    for i in range(len(progresses)):
-        progress = 100 - progresses[i]
-        speed = speeds[i]
-        day = math.ceil(progress/speed)
+    for x in zip(progresses, speeds):
+        day = math.ceil((100-x[0]) / x[1])
         queue.append(day)
         
     day = 1

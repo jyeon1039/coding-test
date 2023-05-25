@@ -11,13 +11,11 @@ def solution(genres, plays):
             album_plays[g] = 0
         album[g].append((i, p))
         album_plays[g] += p
-    album_plays = sorted(album_plays.items(), key=lambda x: x[1], reverse=True)
-    print(album_plays)
 
     for g in album.keys():
         album[g].sort(key=lambda x:x[1], reverse=True)
     
-    for g in album_plays:
+    for g in sorted(album_plays.items(), key=lambda x: x[1], reverse=True):
         a = album[g[0]][:2]
         for x in a:
             answer.append(x[0])

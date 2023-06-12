@@ -16,6 +16,7 @@ def bfs(maps):
                     maps[ny][nx] = maps[y][x] + 1
                     q.append((ny, nx))
         
+    # 마지막이 1이면 도착하지 못 한 것이므로 -1 반환
     if maps[-1][-1] == 1:
         return -1
     else:

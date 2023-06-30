@@ -3,6 +3,7 @@ def solution(a):
     lmin = 1000000001
     rmin = 1000000001
     
+    # 양쪽의 최소값 중 하나라도 자신보다 크면 됨. 즉 자신이 양쪽 중에서 최소값이면 됨
     for i in range(len(a)):
         if a[i] < lmin:
             answer[i] = True

@@ -8,7 +8,7 @@ def solution(n, info):
     for combi in combinations_with_replacement(range(11),n):
         lion_info = [0]*11 # 라이언 점수
         
-        # 10-i 인 이유 : info 의 0번째 index의 점수가 10-i 이기 때문에 통일되게 만들기 위해서
+        # 10-i 인 이유 : 낮은 점수부터 채우기 위해서
         for i in combi:
             lion_info[10-i] += 1
         

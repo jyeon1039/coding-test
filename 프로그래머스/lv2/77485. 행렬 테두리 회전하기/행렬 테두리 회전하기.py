@@ -2,15 +2,11 @@ def solution(rows, columns, queries):
     answer = []
     arr = [[0 for _ in range(columns+1)] for _ in range(rows+1)]
 
-    num = 1
     # 행렬 생성
     for y in range(1, rows+1):
         for x in range(1, columns+1):
-            arr[y][x] = num
-            num += 1
-            
-    if rows == 4:
-        print(arr)
+            arr[y][x] = (y-1)*columns + x
+    
     for y1, x1, y2, x2 in queries:
         tmp = arr[y1][x1]
         mini = tmp
